@@ -1,9 +1,13 @@
 const Translation = require("../models/translation");
 const axios = require("axios");
+const { BadRequestError } = require("../errors");
 
 exports.getTranslation = async (req, res) => {
   const { text, targetLanguage } = req.body;
-  console.log(text);
+  if (!text || !targetLanguage) {
+    throw new BadRequestError("Missing values");
+  }
+
   const target = targetLanguage ? targetLanguage : "en";
   try {
     const options = {
@@ -30,6 +34,12 @@ exports.getTranslation = async (req, res) => {
       translate = `${response.data[0].result.text}`;
     }
 
+    const newTranslation = await Translation.create({
+      word: text,
+      targetLanguage: target,
+      translation: translate,
+    });
+
     res.status(200).json({
       text: text,
       translation: translate,
@@ -39,8 +49,20 @@ exports.getTranslation = async (req, res) => {
   }
 };
 
-exports.addTranslation = async (req, res) => {};
+exports.updateTranslation = async (req, res) => {
+  const { translationId } = req.params;
+  const { text, targetLanguage } = req.body;
+};
 
-exports.updateTranslation = async (req, res) => {};
+exports.deleteTranslation = async (req, res) => {
+  const { translationId } = req.params;
+  const translation = await Translation.findByIdAndRemove({
+    _id: translationId,
+  });
 
-exports.deleteTranslation = async (req, res) => {};
+  if (!translation) {
+    throw new BadRequestError("Translation not found");
+  }
+
+  res.status(200).json({ status: "Success! Translation removed." });
+};

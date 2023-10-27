@@ -9,7 +9,10 @@ const {
 
 const router = express.Router();
 
-router.route("/").post(getTranslation).post(addTranslation);
-router.route("/:wordId").patch(updateTranslation).delete(deleteTranslation);
+router.route("/").post(getTranslation);
+router
+  .route("/:translationId")
+  .patch(updateTranslation)
+  .delete(deleteTranslation);
 
 module.exports = router;
