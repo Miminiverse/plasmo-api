@@ -1,0 +1,176 @@
+{
+	"id": "586dafc2-72f8-4447-96c1-ca947709ec44",
+	"name": "Translation",
+	"timestamp": "2023-10-27T16:24:45.054Z",
+	"collection_id": "23207395-e475a415-d011-4cb6-b5ca-a00cd5f76175",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 9,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2023-10-27T16:24:41.486Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "fcf6a40d-75f6-47fd-9f36-6c5990dbbaf9",
+			"name": "Fetch",
+			"url": "http://localhost:8001/api/v1/translation",
+			"time": 182,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Verify JSON Schema": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify JSON Schema": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				182
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Verify JSON Schema": true
+				}
+			]
+		},
+		{
+			"id": "85cc79f1-d999-4ca5-a737-3062023dcac3",
+			"name": "Create ",
+			"url": "http://localhost:8001/api/v1/translation",
+			"time": 2803,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Translation data is valid": true,
+				"Verify JSON Schema": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Translation data is valid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify JSON Schema": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				2803
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Translation data is valid": true,
+					"Verify JSON Schema": true
+				}
+			]
+		},
+		{
+			"id": "574e9bb6-14a0-4a4d-9a80-4aa8ccbb4cd6",
+			"name": "Update",
+			"url": "http://localhost:8001/api/v1/translation/653b44519a55071f19cd5bce",
+			"time": 141,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Translation data is valid": true,
+				"Verify JSON Schema": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Translation data is valid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify JSON Schema": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				141
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Translation data is valid": true,
+					"Verify JSON Schema": true
+				}
+			]
+		},
+		{
+			"id": "1242c10e-4cf7-400f-8e52-0056656ec699",
+			"name": "Delete",
+			"url": "http://localhost:8001/api/v1/translation/653b44519a55071f19cd5bce",
+			"time": 147,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				147
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 3273,
+	"collection": {
+		"requests": [
+			{
+				"id": "fcf6a40d-75f6-47fd-9f36-6c5990dbbaf9",
+				"method": "GET"
+			},
+			{
+				"id": "85cc79f1-d999-4ca5-a737-3062023dcac3",
+				"method": "POST"
+			},
+			{
+				"id": "574e9bb6-14a0-4a4d-9a80-4aa8ccbb4cd6",
+				"method": "PATCH"
+			},
+			{
+				"id": "1242c10e-4cf7-400f-8e52-0056656ec699",
+				"method": "DELETE"
+			}
+		]
+	}
+}
