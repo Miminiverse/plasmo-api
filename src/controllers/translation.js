@@ -2,7 +2,8 @@ const Translation = require("../models/translation");
 const axios = require("axios");
 
 exports.getTranslation = async (req, res) => {
-  const { word, targetLanguage } = req.body;
+  const { text, targetLanguage } = req.body;
+  console.log(text);
   const target = targetLanguage ? targetLanguage : "en";
   try {
     const options = {
@@ -14,16 +15,24 @@ exports.getTranslation = async (req, res) => {
         "X-RapidAPI-Host": process.env.API_HOST,
       },
       data: {
-        word,
+        text,
         target,
       },
     };
     const response = await axios.request(options);
-    let data = response.data[0].result;
+    console.log(response.data);
 
-    res.status(201).json({
-      word: word,
-      translation: data,
+    let translate;
+
+    if (response.data[0].result.ori === "en" && target === "en") {
+      translate = "";
+    } else {
+      translate = `${response.data[0].result.text}`;
+    }
+
+    res.status(200).json({
+      text: text,
+      translation: translate,
     });
   } catch {
     res.status(500).json({ error: "Error" });
