@@ -13,6 +13,7 @@ exports.fetchTranslation = async (req, res) => {
 };
 
 exports.createTranslation = async (req, res) => {
+  // Languages list is in utils/languages.js
   const { text, targetLanguage } = req.body;
   if (!text || !targetLanguage) {
     throw new BadRequestError("Missing values");

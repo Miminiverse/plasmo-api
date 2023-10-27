@@ -26,6 +26,19 @@ const router = express.Router();
  *   post:
  *     summary: create translation
  *     tags: [Translation]
+ *     parameters:
+ *       - in: body
+ *         name: translation
+ *         description: Translation details
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             text:
+ *               type: string
+ *               description: The text to be translated.
+ *             targetLanguage:
+ *               type: string
  *     responses:
  *       '201':
  *         description: Successful
@@ -38,6 +51,21 @@ const router = express.Router();
  *   patch:
  *     summary: update translation
  *     tags: [Translation]
+ *     parameters:
+ *       - in: path
+ *         name: translationId
+ *         required: true
+ *         type: string
+ *       - in: body
+ *         name: translation
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             word:
+ *               type: string
+ *             translation:
+ *               type: string
  *     responses:
  *       '201':
  *         description: Successful
