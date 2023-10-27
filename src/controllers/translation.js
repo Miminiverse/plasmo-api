@@ -2,7 +2,17 @@ const Translation = require("../models/translation");
 const axios = require("axios");
 const { BadRequestError } = require("../errors");
 
-exports.getTranslation = async (req, res) => {
+exports.fetchTranslation = async (req, res) => {
+  const translations = await Translation.find({});
+
+  if (!translations) {
+    throw new BadRequestError("There are no translations");
+  }
+
+  res.status(200).json({ status: "Success", translations });
+};
+
+exports.createTranslation = async (req, res) => {
   const { text, targetLanguage } = req.body;
   if (!text || !targetLanguage) {
     throw new BadRequestError("Missing values");
@@ -24,7 +34,6 @@ exports.getTranslation = async (req, res) => {
       },
     };
     const response = await axios.request(options);
-    console.log(response.data);
 
     let translate;
 
@@ -40,7 +49,7 @@ exports.getTranslation = async (req, res) => {
       translation: translate,
     });
 
-    res.status(200).json({
+    res.status(201).json({
       text: text,
       translation: translate,
     });
@@ -51,7 +60,22 @@ exports.getTranslation = async (req, res) => {
 
 exports.updateTranslation = async (req, res) => {
   const { translationId } = req.params;
-  const { text, targetLanguage } = req.body;
+  const { word, translation } = req.body;
+  if (!word || !translation) {
+    throw new BadRequestError("Missing values");
+  }
+  const updatedTranslation = await Translation.findByIdAndUpdate(
+    { _id: translationId },
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+  if (!updatedTranslation) {
+    throw new BadRequestError("This translation does not exist");
+  }
+  return res.status(201).json({ updatedTranslation });
 };
 
 exports.deleteTranslation = async (req, res) => {
